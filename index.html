@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCIIPC Supervisory Analytics Platform | SIH26157</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="theme-dark">
+  <!-- Top Navigation Bar -->
+  <header class="app-header">
+    <div class="brand-container">
+      <div class="brand-badge">SIH26157</div>
+      <div class="brand-text">
+        <h1>NCIIPC SUPERVISORY ANALYTICS</h1>
+        <span class="sub-title">Critical Sector SOC Operational Integrity & Forensic Audit Platform</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="btn-compare-timeline" class="btn btn-outline">
+        <span class="btn-icon">⏱️</span> Live Timeline Demo (Genuine vs Gap)
+      </button>
+      <button id="btn-upload-data" class="btn btn-secondary">
+        <span class="btn-icon">📤</span> Ingest Custom SOC Data
+      </button>
+      <div class="system-status">
+        <span class="status-indicator active"></span>
+        <span>Examiner Node Online</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Container -->
+  <main class="app-container">
+    <!-- Top Summary Banner -->
+    <section class="banner-section">
+      <div class="stat-card">
+        <div class="stat-label">SUPERVISED ENTITIES</div>
+        <div class="stat-value" id="stat-total-cses">5 CSEs</div>
+        <div class="stat-desc">Critical Infrastructure Sectors</div>
+      </div>
+      <div class="stat-card danger">
+        <div class="stat-label">HIGH ATTENTION AUDITS</div>
+        <div class="stat-value" id="stat-high-attention">2 CSEs</div>
+        <div class="stat-desc">Severe Execution / Negative Space Gaps</div>
+      </div>
+      <div class="stat-card warning">
+        <div class="stat-label">FLAGGED INVESTIGATION GAPS</div>
+        <div class="stat-value" id="stat-total-gaps">124 Cases</div>
+        <div class="stat-desc">Rapid Closures & Tab-Open Sessions</div>
+      </div>
+      <div class="stat-card info">
+        <div class="stat-label">CRITICAL BLIND SPOTS</div>
+        <div class="stat-value" id="stat-total-blindspots">14 Assets</div>
+        <div class="stat-desc">Zero Recorded Security Telemetry</div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-leaderboard">🏛️ Sector Supervisory Matrix</button>
+      <button class="tab-btn" data-tab="tab-entity-detail">🔎 Entity Forensic Deep-Dive</button>
+      <button class="tab-btn" data-tab="tab-timeline-demo">⚡ Investigation Timeline Reconstructor</button>
+      <button class="tab-btn" data-tab="tab-negative-space">🔭 Negative Space (Blind Spots)</button>
+      <button class="tab-btn" data-tab="tab-audit-report">📋 Official Supervisory Dossier</button>
+    </nav>
+
+    <!-- TAB 1: Sector Supervisory Leaderboard -->
+    <section id="tab-leaderboard" class="tab-content active">
+      <div class="section-header">
+        <div>
+          <h2>Critical Sector Supervisory Priority Matrix</h2>
+          <p class="text-muted">Automated evidence-backed triage directing NCIIPC examiners to entities with verified operational execution gaps.</p>
+        </div>
+      </div>
+
+      <div class="leaderboard-grid" id="leaderboard-container">
+        <!-- Cards injected dynamically -->
+        <div class="loading-spinner">Loading supervisory analytics...</div>
+      </div>
+
+      <div class="baselines-panel mt-4">
+        <h3>📊 Sector-Wide Operational Baselines (Peer Norms)</h3>
+        <div class="baseline-chips" id="baseline-chips-container">
+          <!-- Baseline stats injected -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: Entity Forensic Deep Dive -->
+    <section id="tab-entity-detail" class="tab-content">
+      <div class="detail-header-card">
+        <div class="entity-selector-row">
+          <div>
+            <label for="select-cse">Select Supervised Entity:</label>
+            <select id="select-cse" class="select-dropdown">
+              <option value="CSE-07">CSE-07: TelecomHub National (High Execution Gap Showcase)</option>
+              <option value="CSE-12">CSE-12: MetroRail Transit Systems (Negative Space Showcase)</option>
+              <option value="CSE-02">CSE-02: National Commercial Bank (Peer Deviation Showcase)</option>
+              <option value="CSE-01">CSE-01: PowerGrid Infra Corp (Compliant Baseline)</option>
+              <option value="CSE-19">CSE-19: Airport Authority Logistics (Baseline)</option>
+            </select>
+          </div>
+          <div class="entity-score-display" id="detail-score-box">
+            <!-- Dynamic score box -->
+          </div>
+        </div>
+
+        <div class="audit-reasons-box mt-3" id="detail-audit-reasons">
+          <!-- Dynamic findings list -->
+        </div>
+      </div>
+
+      <!-- Execution Gap Analysis Section -->
+      <div class="entity-subgrid mt-4">
+        <div class="subcard">
+          <div class="subcard-header">
+            <h3>🔴 Flagged Case Records (Execution Gaps)</h3>
+            <span class="badge" id="flagged-cases-count-badge">0 Flagged</span>
+          </div>
+          <p class="text-muted small">Individual cases displaying rapid closures, tab-left-open dormancy, or missing forensic evidence. Click any case to inspect raw audit telemetry.</p>
+          <div class="table-responsive mt-2">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Case ID</th>
+                  <th>Severity</th>
+                  <th>Alert Type</th>
+                  <th>Duration</th>
+                  <th>IES Score</th>
+                  <th>Primary Gap Reason</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="flagged-cases-tbody">
+                <!-- Cases injected -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Side-by-Side Timeline Visualizer -->
+    <section id="tab-timeline-demo" class="tab-content">
+      <div class="section-header">
+        <div>
+          <h2>Investigation Action Timeline Reconstructor</h2>
+          <p class="text-muted">Directly solves the "tab left open" problem. Compare a genuine, verified investigation against a superficial execution gap.</p>
+        </div>
+      </div>
+
+      <div class="comparison-grid mt-3">
+        <!-- Genuine Investigation Card -->
+        <div class="timeline-column legitimate">
+          <div class="timeline-header">
+            <div class="col-title">
+              <span class="indicator-icon">✅</span>
+              <div>
+                <h3>Genuine SOC Investigation Trail</h3>
+                <span class="sub" id="genuine-case-meta">CSE-01-C0005 | PowerGrid</span>
+              </div>
+            </div>
+            <div class="metric-pill success" id="genuine-ies-pill">IES Score: 95/100</div>
+          </div>
+          <div class="timeline-body" id="genuine-timeline-events">
+            <!-- Events injected -->
+          </div>
+          <div class="timeline-footer">
+            <div class="footer-stat">
+              <span>Handling Time:</span>
+              <strong id="genuine-duration">38.0 mins</strong>
+            </div>
+            <div class="footer-stat">
+              <span>Active Telemetry Span:</span>
+              <strong id="genuine-span">32.5 mins</strong>
+            </div>
+            <div class="footer-stat">
+              <span>HADR Divergence:</span>
+              <strong class="text-success" id="genuine-hadr">1.16x (Normal)</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Suspicious Execution Gap Card -->
+        <div class="timeline-column suspicious">
+          <div class="timeline-header">
+            <div class="col-title">
+              <span class="indicator-icon">🚨</span>
+              <div>
+                <h3>Potential Execution Gap ("Tab Left Open")</h3>
+                <span class="sub" id="suspicious-case-meta">CSE-07-C0025 | TelecomHub</span>
+              </div>
+            </div>
+            <div class="metric-pill danger" id="suspicious-ies-pill">IES Score: 10/100</div>
+          </div>
+          <div class="timeline-body" id="suspicious-timeline-events">
+            <!-- Events injected -->
+          </div>
+          <div class="timeline-footer">
+            <div class="footer-stat">
+              <span>Handling Time:</span>
+              <strong id="suspicious-duration">88.0 mins</strong>
+            </div>
+            <div class="footer-stat">
+              <span>Active Telemetry Span:</span>
+              <strong id="suspicious-span">0.5 mins</strong>
+            </div>
+            <div class="footer-stat">
+              <span>HADR Divergence:</span>
+              <strong class="text-danger" id="suspicious-hadr">176x (Severe Dormancy)</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: Negative Space Blind Spot Map -->
+    <section id="tab-negative-space" class="tab-content">
+      <div class="section-header">
+        <div>
+          <h2>Negative Space: Asset Telemetry Coverage & Blind Spots</h2>
+          <p class="text-muted">Uncovering what SHOULD exist but doesn't: Critical infrastructure assets with zero observed log queries or alerts.</p>
+        </div>
+      </div>
+
+      <div class="blindspot-matrix-wrapper mt-3">
+        <div class="subcard">
+          <div class="subcard-header">
+            <h3>Infrastructure Asset Telemetry Sensor Grid (CSE-12 MetroRail Transit)</h3>
+            <div class="legend">
+              <span class="legend-item"><span class="dot online"></span> Monitored</span>
+              <span class="legend-item"><span class="dot dark"></span> Unmonitored Blind Spot</span>
+            </div>
+          </div>
+          <div class="asset-grid mt-3" id="asset-blindspot-grid">
+            <!-- Asset chips injected -->
+          </div>
+        </div>
+
+        <div class="subcard mt-4">
+          <h3>Unmonitored Critical Infrastructure Assets Details</h3>
+          <div class="table-responsive mt-2">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Asset ID</th>
+                  <th>Hostname</th>
+                  <th>Criticality</th>
+                  <th>Segment / Department</th>
+                  <th>Status</th>
+                  <th>Supervisory Concern</th>
+                </tr>
+              </thead>
+              <tbody id="blindspot-table-tbody">
+                <!-- Blindspot rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: Official Supervisory Report Dossier -->
+    <section id="tab-audit-report" class="tab-content">
+      <div class="section-header">
+        <div>
+          <h2>NCIIPC Supervisory Audit Dossier</h2>
+          <p class="text-muted">Formal supervisory finding report ready for official examination, compliance notices, and on-site audit referrals.</p>
+        </div>
+        <div class="report-actions">
+          <button id="btn-copy-report" class="btn btn-secondary">📋 Copy Markdown</button>
+          <button id="btn-download-report" class="btn btn-primary">📥 Download Official Dossier</button>
+        </div>
+      </div>
+
+      <div class="report-preview-container mt-3">
+        <pre class="report-view" id="report-markdown-content">Loading report...</pre>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: Forensic Case Drill Down -->
+  <div id="case-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h2 id="modal-case-title">Case Forensic Breakdown</h2>
+          <span class="text-muted small" id="modal-case-sub"></span>
+        </div>
+        <button id="btn-close-modal" class="btn-close">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-case-body">
+        <!-- Dynamic case details -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Custom Ingest Upload -->
+  <div id="upload-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Ingest Custom SOC Telemetry Dataset</h2>
+        <button id="btn-close-upload-modal" class="btn-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted">Paste your SOC JSON dataset or upload structured CSVs to run real-time supervisory analytics.</p>
+        <textarea id="custom-json-input" class="json-textarea" placeholder="Paste custom JSON dataset here or click 'Load Demo Attack Case'"></textarea>
+        <div class="modal-footer mt-3">
+          <button id="btn-load-sample" class="btn btn-outline">Load Sample Incident JSON</button>
+          <button id="btn-submit-upload" class="btn btn-primary">Process Supervisory Analytics</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
