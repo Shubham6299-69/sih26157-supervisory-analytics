@@ -1,0 +1,24 @@
+{
+  "name": "sih26157-nciipc-supervisory-analytics",
+  "version": "1.0.0",
+  "description": "NCIIPC Supervisory Operational Integrity & Forensic Telemetry Audit Engine",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/test_engine.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "cybersecurity",
+    "nciipc",
+    "sih2026",
+    "soc-audit",
+    "supervisory-analytics",
+    "execution-gaps",
+    "negative-space"
+  ],
+  "author": "SIH Team",
+  "license": "MIT"
+}
