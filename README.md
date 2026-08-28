@@ -91,30 +91,7 @@ $$J(A, B) = \frac{|A \cap B|}{|A \cup B|} \ge 0.75$$
 
 ---
 
-## ⚡ Quick Start & Running the Prototype
 
-### Option 1: Double-Click Launcher (Windows)
-Double-click `start.bat` in the project root directory.
-
-### Option 2: Command Line
-```powershell
-& "C:\Users\Shubham agrawal\AppData\Roaming\Antigravity\bin\agy-node.cmd" server.js
-```
-
-Open your browser to:
-👉 **`http://localhost:3000`**
-
----
-
-## 🎬 90-Second Killer Demo Script for SIH Judges
-
-1. **The Pitch (15s)**:
-   > *"Judges, NCIIPC cannot inspect 500,000 SOC alerts manually. High-level KPI reports say '98% SLA met', but hide operational execution gaps. Our platform acts as an automated detective assistant for examiners, analyzing operational digital footprints."*
-2. **Sector Matrix (20s)**:
-   > *"On the Sector Supervisory Matrix, notice how CSE-07 (TelecomHub) and CSE-12 (MetroRail) are immediately flagged with High Supervisory Attention, while CSE-01 (PowerGrid) is verified compliant."*
-3. **The 'Tab-Left-Open' Demo (30s)**:
-   > *"Click 'Live Timeline Demo'. On the left is a genuine investigation with SIEM queries, IOC checks, and evidence dumps. On the right is Case C0025 from CSE-07: open for 88 minutes, but our telemetry shows 87 minutes of complete dormancy and an HADR divergence of 176x. This proves the tab was left open."*
-4. **Negative Space (15s)**:
    > *"Switch to the 'Negative Space' tab for MetroRail. Our system discovered 14 critical train-signaling servers with ZERO telemetry over the audit window—a major blind spot."*
 5. **Dossier Export (10s)**:
    > *"With one click, the examiner generates an official, legally defensible NCIIPC Supervisory Audit Dossier ready for regulatory inquiry."*
